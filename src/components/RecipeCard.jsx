@@ -1,8 +1,10 @@
-import { useContext } from 'react'
+import { memo } from 'react'
 import { Link } from 'react-router-dom'
-import { useFavorites } from '../context/FavoritesContext'
+// import { useFavorites } from '../context/FavoritesContext'
+import { useFavorites } from '../hooks/useFavorites'
 
 function RecipeCard({ meal }) {
+    console.log('🔥🔥RecipeCard rendered:', meal.strMeal);
     const {isFavorite, toggleFavorite } = useFavorites()
     const canFavorite = typeof toggleFavorite === 'function'
     const favorited = canFavorite && isFavorite(meal.idMeal)
@@ -44,4 +46,4 @@ function RecipeCard({ meal }) {
     )
 }
 
-export default RecipeCard
+export default memo(RecipeCard)

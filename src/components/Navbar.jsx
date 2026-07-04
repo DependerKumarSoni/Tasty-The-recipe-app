@@ -1,6 +1,7 @@
 // src/components/Navbar.jsx
 import { Link, NavLink } from 'react-router-dom'
-import { useFavorites } from '../context/FavoritesContext'
+// import { useFavorites } from '../context/FavoritesContext'
+import { useFavorites } from '../hooks/useFavorites'
 import { useTheme } from '../context/ThemeContext'
 
 // 😖 Navbar finally USES the props that App drilled down through Layout.
@@ -45,6 +46,12 @@ function Navbar() {
       <NavLink to="/categories" className={linkClass}>Categories</NavLink>
       <NavLink to="/favorites" className={linkClass}>
         Favorites <span className="count">{favorites.length}</span>
+      </NavLink>
+      <NavLink to="/my-recipes" className={linkClass}>
+        My Recipes
+      </NavLink>
+      <NavLink to="/add-recipe" className={linkClass}>
+        Add Recipe
       </NavLink>
 
       <button className="theme-btn" onClick={toggleTheme}>

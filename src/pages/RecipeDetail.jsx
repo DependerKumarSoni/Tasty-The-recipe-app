@@ -1,11 +1,12 @@
-import {useState, useEffect, useContext} from 'react'
+import {useState, useEffect} from 'react'
 import { useParams, useNavigate} from 'react-router-dom'
-import { FavoritesContext } from '../context/FavoritesContext'
+// import { useFavorites } from '../context/FavoritesContext'
+import { useFavorites } from '../hooks/useFavorites'
 import { getMealById, extractIngredients } from "../api/mealApi"
 import Loader from '../components/Loader'
 
 function RecipeDetail () {
-    const { isFavorite, toggleFavorite } = useContext(FavoritesContext) 
+    const { isFavorite, toggleFavorite } = useFavorites()
 
     const { id } = useParams()
     const navigate = useNavigate()

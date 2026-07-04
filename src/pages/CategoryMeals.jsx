@@ -1,22 +1,20 @@
-import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { getMealsByCategory } from '../api/mealApi'
+import { useFetch } from '../hooks/useFetch'
 import RecipeCard from '../components/RecipeCard'
 import Loader from '../components/Loader'
 
 function CategoriesMeals() {
 
-    const {categoryName } = useParams()
-    const [meals, setMeals] = useState([])
-    const [loading, setLoading] =  useState(true)
+    const { categoryName } = useParams()
 
-    useEffect(() => {
-        setLoading(true)
-        getMealsByCategory(categoryName).then((data) => {
-            setMeals(data)
-            setLoading(false)
-        })
-    }, [categoryName])
+    // One line replaces useState(meals) + useState(loading) + useEffect. ✨
+    const { data: meals, loading } = useFetch(
+        () => getMealsByCategory(categoryName),
+        [categoryName]
+    )
+
+    if (loading) return <Loader label={`Loading ${categoryName}…`} />
 
     return (
         <div className="category-meals">
@@ -27,7 +25,7 @@ function CategoriesMeals() {
                 }
             `}</style>
             <div className='grid'>
-                {meals.map((meal) => (
+                {(meals || []).map((meal) => (
                     <RecipeCard key={meal.idMeal} meal={meal} />
                 ))}
             </div>

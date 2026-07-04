@@ -1,12 +1,12 @@
 // src/pages/Favorites.jsx
-import { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { FavoritesContext } from '../context/FavoritesContext.jsx'
+// import { useFavorites } from '../context/FavoritesContext.jsx'
+import { useFavorites } from '../hooks/useFavorites'
 import RecipeCard from '../components/RecipeCard.jsx'
 
 // 😖 Receives favorites + functions from App, then drills them into each RecipeCard.
 function Favorites() {
-  const {favorites, clearFavorites } = useContext(FavoritesContext)
+  const {favorites, clearFavorites } = useFavorites()
   return (
     <div className="favorites">
       <style>{`

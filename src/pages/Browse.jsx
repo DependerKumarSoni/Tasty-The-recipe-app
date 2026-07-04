@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useSearchParams } from 'react-router-dom';
 import { searchMeals, getMealsByCategory, getCategories } from '../api/mealApi'
 import RecipeCard from '../components/RecipeCard'
@@ -48,6 +48,9 @@ function Browse() {
         else setSearchParams({})
     }
 
+    const handleView = useCallback((id) => {
+        console.log('View Recipe ID:', id)
+    }, [])
 
     return (
         <div className="browse">
@@ -109,6 +112,7 @@ function Browse() {
                         <RecipeCard 
                             key={meal.idMeal}
                             meal={meal}
+                            onView={handleView}
                         />
                     ))}
                 </div>

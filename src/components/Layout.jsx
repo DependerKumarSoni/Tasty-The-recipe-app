@@ -1,13 +1,12 @@
 // src/components/Layout.jsx
-import { useContext } from 'react'
 import { Outlet } from 'react-router-dom'
 import Navbar from './Navbar.jsx'
 import Footer from './Footer.jsx'
 import ScrollToTop from './ScrollToTop.jsx'
-import { ThemeContext } from '../context/ThemeContext.jsx'
+import { useTheme } from '../context/ThemeContext'
 
 function Layout() {
-  const { theme } = useContext(ThemeContext)
+  const { theme } = useTheme()
   return (
     <div className={theme === 'dark' ? 'app dark' : 'app'}>
       <style>{`
